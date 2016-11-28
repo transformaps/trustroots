@@ -20,8 +20,9 @@ var reachEventEmitter = new EventEmitter();
 
 // mocking the influxdb.writeMeasurement()
 var influxdb = {
-  writeMeasurement: function (measurement, fields, tags) {
+  writeMeasurement: function (measurement, fields, tags, callback) {
     reachEventEmitter.emit('reachedInfluxdb', measurement, fields, tags);
+    if (callback) callback();
   }
 };
 
